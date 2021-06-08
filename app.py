@@ -21,7 +21,7 @@ try:
     resource = {"uri": "/Jim", "label": "Jim",
                 "description": "Demo folder", "permissionMask": "0",
                 "creationDate": "2021-06-08T12:00:0", "updateDate": "2021-06-04T12:00:0", "version": "6"}
-    put_folder = put_resource(url=folder_address,
+    put_folder = jasper_session.put(url=folder_address,
                                     json=resource,
                                     auth=(JASPER_USERNAME,JASPER_PASSWORD),
                                     headers=headers)
