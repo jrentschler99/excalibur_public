@@ -16,9 +16,9 @@ JASPER_ADDRESS = config.APP_JASPER_SERVER_URI
 try:
     jasper_session = requests.session()
     jasper_session.verify = False # https://stackoverflow.com/questions/15445981/how-do-i-disable-the-security-certificate-check-in-python-requests
-    folder_address = JASPER_ADDRESS + "/rest_v2/resources/Jim"
+    folder_address = JASPER_ADDRESS + "/rest_v2/resources/organizations/organization_1/Jim"
     headers = {'Content-Type': 'application/repository.folder+json'}
-    resource = {"uri": "/Jim", "label": "Jim",
+    resource = {"uri": "/organizations/organization_1/Jim", "label": "Jim",
                 "description": "Demo folder", "permissionMask": "0",
                 "creationDate": "2021-06-08T12:00:0", "updateDate": "2021-06-04T12:00:0", "version": "0"}
     put_folder = jasper_session.put(url=folder_address,
@@ -39,7 +39,7 @@ except Exception as e:
 try:
     jasper_session = requests.session()
     jasper_session.verify = False  # https://stackoverflow.com/questions/15445981/how-do-i-disable-the-security-certificate-check-in-python-requests
-    user_address = JASPER_ADDRESS + "/rest_v2/users/TestUser001"
+    user_address = JASPER_ADDRESS + "/rest_v2/organizations/organization_1/users/TestUser001"
     headers = {'Content-Type': 'application/json'}
     resource = {
         "fullName": "TestUser001",
@@ -70,8 +70,9 @@ try:
     permission_address = JASPER_ADDRESS + "/rest_v2/permissions"
     headers = {'Content-Type': 'application/json'}
     resource = {
-        "uri": "/Jim",
-        "recipient": "user:/TestUser001",
+        "uri": "/organizations/organization_1/Jim",
+        #"recipient": "user:/TestUser001",
+        "recipient": "user:/organization_1/TestUser001",
         "mask": "30" # Mask defines what level permission https://community.jaspersoft.com/wiki/repository-resource-permission
     }
     post_permission = jasper_session.post(url=permission_address,
